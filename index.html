@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cake Crush</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <style>
+      /* Gaya umum */
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url("https://source.unsplash.com/1600x900/?cakeshop") no-repeat center center/cover;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #000000; /* Hitam */
+        border-bottom: 2px solid #ff4500; /* Oranye */
+      }
+
+      .navbar-brand {
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: #ff4500; /* Oranye */
+        letter-spacing: 2px;
+      }
+
+      .navbar-brand span {
+        color: #ffffff; /* Putih */
+      }
+
+      .nav-link {
+        font-size: 1.1rem;
+        color: #ffffff; /* Putih */
+        font-weight: 500;
+      }
+
+      .nav-link:hover {
+        color: #ff4500 !important; /* Oranye */
+        text-decoration: underline;
+        transition: all 0.3s ease;
+      }
+      
+  /* Animasi teks muncul */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  .hero h1 {
+    animation-delay: 0.6s;
+  }
+
+  .hero p {
+    animation-delay: 0.4s;
+  }
+
+  .btn-cta {
+    animation-delay: 0.6s;
+  }
+
+
+
+      /* Hero Section (Background Gambar) */
+  .hero {
+        height: 100vh; /* Tinggi 100% viewport */
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+              url("img/background.jpeg") no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: 4rem;
+        color: #ff4500; /* Oranye */
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: #ffffff; /* Putih */
+      }
+
+      .btn-cta {
+        background-color: #ff4500; /* Oranye */
+        color: #ffffff; /* Putih */
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        border-radius: 30px;
+        margin-top: 20px;
+      }
+
+      .btn-cta:hover {
+        background-color: #ff6347; /* Lebih terang sedikit */
+      }
+
+      /* About Section */
+      #about {
+        background: linear-gradient(135deg, #ff4500, #ff6347); /* Gradien Oranye */
+        color: #ffffff; /* Putih */
+        padding: 60px 20px;
+        text-align: center;
+      }
+
+      #about h2 {
+        font-size: 2.5rem;
+        color: #ffffff; /* Putih */
+      }
+
+      #about p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* Catalog Section */
+      #catalog {
+        background: url("https://source.unsplash.com/1600x900/?bakery") no-repeat center center/cover;
+        color: #ffffff; /* Putih */
+        padding: 60px 20px;
+      }
+
+      #catalog h2 {
+        font-size: 2.5rem;
+        color: #ff4500; /* Oranye */
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .card {
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .card img {
+        border-radius: 20px 20px 0 0;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .card-title {
+        font-weight: bold;
+        color: #ff4500; /* Oranye */
+      }
+
+      /* Form Order */
+      
+  /* Background gradien dan penyesuaian warna untuk Order Section */
+  #order {
+    background: linear-gradient(135deg, #ff4500, #ff6347); /* Gradien Oranye */
+    color: #ffffff; /* Teks Putih */
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  #order h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+
+  /* Formulir dengan desain modern */
+  .order-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff; /* Putih */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .order-form .form-label {
+    font-weight: bold;
+    color: #ff4500; /* Oranye */
+    margin-bottom: 5px;
+    text-align: left;
+  }
+
+  .order-form .custom-input {
+    border: 1px solid #ff4500; /* Oranye */
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .order-form .custom-input:focus {
+    border-color: #ff6347; /* Lebih terang */
+    box-shadow: 0 0 10px rgba(255, 99, 71, 0.3);
+  }
+
+  .order-form .btn-submit {
+    background: linear-gradient(135deg, #ff4500, #ff6347); /* Gradien Oranye */
+    color: #ffffff; /* Putih */
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    width: 100%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .order-form .btn-submit:hover {
+    transform: scale(1.05);
+    background-color: #ff6347; /* Lebih terang */
+    box-shadow: 0 4px 15px rgba(255, 99, 71, 0.5);
+  }
+
+  .order-form .btn-submit:active {
+    transform: scale(0.95);
+    background-color: #ff4500;
+  }
+
+
+
+      /* Footer */
+      footer {
+        background-color: #000000; /* Hitam */
+        padding: 20px;
+        text-align: center;
+        color: #ffffff; /* Putih */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Cake <span>Crush</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#catalog">Catalog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#order">Order</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div>
+        <h1 class="animate">Welcome to Cake Crush</h1>
+        <p class="animate">Experience the rich and diverse flavors of the world with our cakes, crafted to perfection and inspired by international tastes.</p>
+        <a href="#catalog" class="btn btn-cta animate">Explore Cakes</a>
+      </div>
+    </section>
+    
+    
+
+    <!-- About Section -->
+    <section id="about" data-aos="zoom-in" data-aos-duration="1500">
+      <h2>About Us</h2>
+      <p>Cake Crush offers a menu of cakes inspired by international flavors, made with premium ingredients to ensure top quality. Despite their luxurious taste, our cakes are priced affordably, making them accessible for everyone to enjoy.</p>
+    </section>
+
+    <!-- Catalog Section -->
+    <section id="catalog" data-aos="fade-up" data-aos-duration="1500">
+      <h2>Our Cakes</h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card" data-aos="flip-left" data-aos-duration="15000">
+              <img src="img/Chocolate.jpeg" alt="Chocolate Cake" />
+              <div class="card-body">
+                <h5 class="card-title">Chocolate Cake</h5>
+                <p>Rich and indulgent chocolate goodness.</p>
+                <p1>Rp 25.000,00</p1>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card" data-aos="flip-left" data-aos-duration="1500">
+              <img src="img/Cheesecake.jpeg" alt="Cheesecake" />
+              <div class="card-body">
+                <h5 class="card-title">Cheesecake</h5>
+                <p>Classic cheesecake with a creamy twist.</p>
+                <p1>Rp 27.000,00</p1>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card" data-aos="flip-left" data-aos-duration="1500">
+              <img src="img/Redvelvet.jpeg" alt="Red Velvet Cake" />
+              <div class="card-body">
+                <h5 class="card-title">Red Velvet Cake</h5>
+                <p>Elegant and moist red velvet delight.</p>
+                <p1>Rp 30.000,00</p1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Section -->
+    <section id="order" data-aos="fade-up" data-aos-duration="1500" style="background: #f8f9fa; padding: 60px 20px;">
+      <div class="container d-flex justify-content-center">
+        <div class="order-form" style="width: 100%; max-width: 500px; padding: 40px; background: #ffffff; border-radius: 20px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);">
+          <h2 class="text-center mb-4" style="color: #ff4500;">Order Your Cake</h2>
+          <form id="order_form" name="order_form">
+            <!-- Nama -->
+            <div class="mb-3">
+              <label for="nama" class="form-label" style="color: #ff4500;">Your Name</label>
+              <input type="text" class="form-control custom-input" id="nama" name="nama" placeholder="Enter your name" required />
+            </div>
+    
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label" style="color: #ff4500;">Email Address</label>
+              <input type="email" class="form-control custom-input" id="email" name="email" placeholder="Enter your email" required />
+            </div>
+    
+            <!-- Pilihan Cake -->
+            <div class="mb-3">
+              <label for="cake" class="form-label" style="color: #ff4500;">Choose Your Cake</label>
+              <select class="form-select custom-input" id="cake" name="cake" required>
+                <option value="" disabled selected>Select a cake</option>
+                <option value="Chocolate Cake">Chocolate Cake</option>
+                <option value="Cheesecake">Cheesecake</option>
+                <option value="Red Velvet Cake">Red Velvet Cake</option>
+              </select>
+            </div>
+    
+            <!-- Alamat -->
+            <div class="mb-3">
+              <label for="alamat" class="form-label" style="color: #ff4500;">Delivery Address</label>
+              <input type="text" class="form-control custom-input" id="alamat" name="alamat" placeholder="Enter your address" required />
+            </div>
+    
+            <!-- Payment -->
+            <div class="mb-3">
+              <label for="payment" class="form-label" style="color: #ff4500;">Payment Method</label>
+              <select class="form-select custom-input" id="payment" name="payment" required>
+                <option value="" disabled selected>Select a payment method</option>
+                <option value="QRIS">QRIS</option>
+                <option value="Transfer Bank">Transfer Bank</option>
+              </select>
+            </div>
+    
+            <!-- Submit -->
+            <button type="submit" class="btn btn-submit w-100" style="background: linear-gradient(135deg, #ff4500, #ff6347); color: #ffffff; padding: 15px; font-size: 1.2rem; font-weight: bold; border-radius: 30px; border: none; transition: transform 0.3s;">
+              Place Order
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Cake Crush. All Rights Reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+    const heroSection = document.querySelector(".hero");
+    const heroText = heroSection.querySelectorAll("h1, p, .btn-cta");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Tambahkan animasi ke elemen saat masuk ke viewport
+            heroText.forEach((el, index) => {
+              el.classList.remove("animate");
+              // Tambah kembali untuk memicu ulang animasi
+              setTimeout(() => {
+                el.classList.add("animate");
+              }, index * 200); // Delay bertahap
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Aktif jika 50% elemen terlihat
+      }
+    );
+
+    observer.observe(heroSection);
+  });
+      AOS.init();
+
+      const scriptURL = "https://script.google.com/macros/s/AKfycbzm6NwnMQWPceBCpueAOt5LVJ3WYZk0xdv7-g-CRo-ViNBE9KviCe2mCORnwP0w55yesA/exec"; // Ganti dengan Script ID Anda
+      const form = document.getElementById("order_form");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            alert("Pesanan Anda berhasil dikirim!");
+            form.reset();
+          })
+          .catch((error) => {
+            console.error("Error!", error.message);
+            alert("Terjadi kesalahan. Silakan coba lagi.");
+          });
+      });
+    </script>
+  </body>
+</html
